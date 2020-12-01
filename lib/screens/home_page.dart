@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:unspalsh_app/controller/home_controller.dart';
-
-import 'widgets/reusable_text.dart';
+import 'widgets/reusable_text_bebas.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -122,8 +120,8 @@ class HomePage extends StatelessWidget {
                         ),
                         staggeredTileBuilder: (int index) =>
                             StaggeredTile.count(2, index.isEven ? 4 : 3),
-                        mainAxisSpacing: 5.0,
-                        crossAxisSpacing: 5.0,
+                        mainAxisSpacing: 7.0,
+                        crossAxisSpacing: 7.0,
                       )),
                 ),
               ],

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:unspalsh_app/env/env.dart';
 import 'package:unspalsh_app/models/photo_model.dart';
 import 'package:unspalsh_app/models/topic_pic_model.dart';
@@ -15,14 +15,15 @@ const getTopicUrl =
 
 // API FOR GETTING PHOTOS
 class MyApiClient {
-  static var client = http.Client();
+  static Dio dio = new Dio();
+
   static Future<List<PhotoModel>> getPhoto() async {
     try {
-      var response = await client.get(getPhotoUrl);
+      var response = await dio.get(getPhotoUrl,
+          options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
-        var jsonString = response.body;
+        var jsonString = response.data.toString();
         final photoModel = photoModelFromJson(jsonString);
-        // return photoModelFromJson(jsonString);
         return photoModel;
       } else {
         print('error has occured in getPhoto()');
@@ -37,9 +38,10 @@ class MyApiClient {
 
   static Future<List<TopicModel>> getTopic() async {
     try {
-      var response = await client.get(getTopicUrl);
+      var response = await dio.get(getTopicUrl,
+          options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
-        var jsonString = response.body;
+        var jsonString = response.data.toString();
         final topicModel = topicModelFromJson(jsonString);
         // return topicModelFromJson(jsonString);
         return topicModel;
@@ -60,14 +62,13 @@ class MyApiClient {
     String getTopicPicUrl =
         'https://api.unsplash.com/topics/$id/photos/?client_id=$apiKey&per_page=100';
     try {
-      var response = await client.get(getTopicPicUrl);
+      var response = await dio.get(getTopicPicUrl,
+          options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
-        var jsonString = response.body;
+        var jsonString = response.data.toString();
         final topicPicModel = topicPicModelFromJson(jsonString);
-        // return topicModelFromJson(jsonString);
         return topicPicModel;
       } else {
-        print("Status Code : ${response.statusCode}");
         print('error has occured in getTopicPic()');
         return null;
       }

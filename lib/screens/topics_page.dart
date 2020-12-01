@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:unspalsh_app/controller/home_controller.dart';
 import 'package:unspalsh_app/controller/topic_controller.dart';
 
-import 'widgets/reusable_text.dart';
+import 'widgets/reusable_text_bebas.dart';
 
 class TopicsPage extends StatelessWidget {
   const TopicsPage({Key key}) : super(key: key);
@@ -38,15 +38,6 @@ class TopicsPage extends StatelessWidget {
                     },
                   ),
                   SizedBox(width: 100),
-                  // Text(
-                  //   // Title
-                  //   // "${Get.arguments[1]}",
-                  //   ,
-                  //   style: GoogleFonts.bebasNeue(
-                  //     fontSize: 25,
-                  //     letterSpacing: 3,
-                  //   ),
-                  // ),
                   TextComponent(
                     title: "${homeController.topicModel[index].title}",
                     fontSize: 25,

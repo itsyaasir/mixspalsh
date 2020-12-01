@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:unspalsh_app/controller/home_contoller.dart';
 import 'package:unspalsh_app/controller/topic_controller.dart';
 
 class TopicsPage extends StatelessWidget {
@@ -9,7 +10,9 @@ class TopicsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TopicController controller = Get.put(TopicController());
+    TopicController topicController = Get.put(TopicController());
+    HomeController homeController = Get.put(HomeController());
+    int index = Get.arguments[0];
     return Container(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -34,7 +37,9 @@ class TopicsPage extends StatelessWidget {
                   ),
                   SizedBox(width: 100),
                   Text(
-                    "${Get.arguments[1]}",
+                    // Title
+                    // "${Get.arguments[1]}",
+                    "${homeController.topicModel[index].title}",
                     style: GoogleFonts.bebasNeue(
                       fontSize: 25,
                       letterSpacing: 3,
@@ -48,7 +53,9 @@ class TopicsPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: NetworkImage("${Get.arguments[2]}"),
+                    // Cover Photo Small
+                    image: NetworkImage(
+                        "${homeController.topicModel[index].coverPhoto.urls.small}"),
                     fit: BoxFit.cover,
                     colorFilter: new ColorFilter.mode(
                         Colors.grey.withOpacity(0.4), BlendMode.dstATop),
@@ -56,7 +63,8 @@ class TopicsPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "${Get.arguments[1]}",
+                    // Title
+                    "${homeController.topicModel[index].title}",
                     style: GoogleFonts.bebasNeue(
                       color: Colors.white,
                       letterSpacing: 10,
@@ -72,19 +80,19 @@ class TopicsPage extends StatelessWidget {
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       crossAxisCount: 4,
-                      itemCount: controller.topicPicModel.length,
+                      itemCount: topicController.topicPicModel.length,
                       itemBuilder: (BuildContext context, int index) =>
                           GestureDetector(
                         onTap: () {
                           Get.toNamed("/details", arguments: [
-                            "${controller.topicPicModel[index].description}",
-                            "${controller.topicPicModel[index].urls.regular}",
-                            "${controller.topicPicModel[index].user.name}",
-                            "${controller.topicPicModel[index].likes}",
-                            "${controller.topicPicModel[index].altDescription}",
-                            "${controller.topicPicModel[index].user.profileImage.medium}",
-                            "${controller.topicPicModel[index].user.location}",
-                            "${controller.topicPicModel[index].id}"
+                            "${topicController.topicPicModel[index].description}",
+                            "${topicController.topicPicModel[index].urls.regular}",
+                            "${topicController.topicPicModel[index].user.name}",
+                            "${topicController.topicPicModel[index].likes}",
+                            "${topicController.topicPicModel[index].altDescription}",
+                            "${topicController.topicPicModel[index].user.profileImage.medium}",
+                            "${topicController.topicPicModel[index].user.location}",
+                            "${topicController.topicPicModel[index].id}"
                           ]);
                         },
                         child: Container(
@@ -92,7 +100,7 @@ class TopicsPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
                                 image: new NetworkImage(
-                                    "${controller.topicPicModel[index].urls.regular}"),
+                                    "${topicController.topicPicModel[index].urls.regular}"),
                                 fit: BoxFit.cover,
                               )),
                         ),

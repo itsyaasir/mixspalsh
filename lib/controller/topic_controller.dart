@@ -5,6 +5,7 @@ import 'package:unspalsh_app/provider/api.dart';
 class TopicController extends GetxController {
   var isLoading = true.obs;
   final topicPicModel = List<TopicPicModel>().obs;
+
   @override
   void onInit() {
     fetchTopicPhotos();

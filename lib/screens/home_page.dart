@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:unspalsh_app/controller/home_contoller.dart';
@@ -11,7 +10,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.put(HomeController());
-    final iconSvg = "assets/icon.svg";
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -28,17 +26,18 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        iconSvg,
-                        height: 35,
+                      Image.asset(
+                        "assets/icon.png",
                         fit: BoxFit.cover,
+                        width: 45,
+                        height: 40,
                       ),
                       SizedBox(width: 5),
                       Text(
                         "MIXPLASH",
                         style: GoogleFonts.bebasNeue(
                           color: Colors.black,
-                          fontSize: 35,
+                          fontSize: 30,
                           letterSpacing: 2,
                         ),
                       ),
@@ -65,10 +64,12 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           Get.toNamed("/topics", arguments: [
+                            index,
                             "${controller.topicModel[index].id}",
-                            "${controller.topicModel[index].title}",
-                            "${controller.topicModel[index].coverPhoto.urls.small}",
                           ]);
+                          // "${controller.topicModel[index].id}",
+                          // "${controller.topicModel[index].title}",
+                          // "${controller.topicModel[index].coverPhoto.urls.small}",
                         },
                         child: Container(
                           margin: EdgeInsets.only(right: 7),

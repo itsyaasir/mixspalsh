@@ -25,7 +25,7 @@ class MyApiClient {
         // return photoModelFromJson(jsonString);
         return photoModel;
       } else {
-        print('erro -get');
+        print('error has occured in getPhoto()');
         return null;
       }
     } catch (error) {
@@ -44,7 +44,7 @@ class MyApiClient {
         // return topicModelFromJson(jsonString);
         return topicModel;
       } else {
-        print('erro -get');
+        print('erro error has occured in getTopic()');
         return null;
       }
     } catch (error) {
@@ -55,18 +55,20 @@ class MyApiClient {
   }
 
   static Future<List<TopicPicModel>> getTopicPic() async {
+    String id = Get.arguments[1];
+    print("$id Here you go");
     String getTopicPicUrl =
-        'https://api.unsplash.com/topics/${Get.arguments[0]}/photos/?client_id=$apiKey&per_page=100';
+        'https://api.unsplash.com/topics/$id/photos/?client_id=$apiKey&per_page=100';
     try {
       var response = await client.get(getTopicPicUrl);
-      print(Get.arguments[0]);
       if (response.statusCode == 200) {
         var jsonString = response.body;
         final topicPicModel = topicPicModelFromJson(jsonString);
         // return topicModelFromJson(jsonString);
         return topicPicModel;
       } else {
-        print('erro -get');
+        print("Status Code : ${response.statusCode}");
+        print('error has occured in getTopicPic()');
         return null;
       }
     } catch (error) {

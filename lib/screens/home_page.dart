@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:unspalsh_app/controller/home_contoller.dart';
+import 'package:unspalsh_app/controller/home_controller.dart';
+
+import 'widgets/reusable_text.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.put(HomeController());
@@ -33,26 +33,14 @@ class HomePage extends StatelessWidget {
                         height: 40,
                       ),
                       SizedBox(width: 5),
-                      Text(
-                        "MIXPLASH",
-                        style: GoogleFonts.bebasNeue(
-                          color: Colors.black,
-                          fontSize: 30,
-                          letterSpacing: 3,
-                        ),
-                      ),
+                      TextComponent(
+                          title: "MiXplash", fontSize: 30, letterSpacing: 3),
                     ],
                   ),
                 ),
                 // TODO:Impement Search here
                 SizedBox(height: 5),
-                Text(
-                  "Explore",
-                  style: GoogleFonts.bebasNeue(
-                    letterSpacing: 2,
-                    fontSize: 20,
-                  ),
-                ),
+                TextComponent(title: "Explore", fontSize: 20, letterSpacing: 2),
                 SizedBox(height: 10),
                 Container(
                   height: 150,
@@ -67,9 +55,6 @@ class HomePage extends StatelessWidget {
                             index,
                             "${controller.topicModel[index].id}",
                           ]);
-                          // "${controller.topicModel[index].id}",
-                          // "${controller.topicModel[index].title}",
-                          // "${controller.topicModel[index].coverPhoto.urls.small}",
                         },
                         child: Container(
                           margin: EdgeInsets.only(right: 7),
@@ -86,14 +71,11 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           child: Center(
-                            child: Text(
-                              "${controller.topicModel[index].title}",
-                              style: GoogleFonts.bebasNeue(
-                                color: Colors.white,
-                                letterSpacing: 10,
+                            child: TextComponent(
+                                title: "${controller.topicModel[index].title}",
                                 fontSize: 20,
-                              ),
-                            ),
+                                color: Colors.white,
+                                letterSpacing: 10),
                           ),
                         ),
                       ),
@@ -101,12 +83,10 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10),
-                Text(
-                  "Popular",
-                  style: GoogleFonts.bebasNeue(
-                    letterSpacing: 2,
-                    fontSize: 20,
-                  ),
+                TextComponent(
+                  title: "Popular",
+                  fontSize: 20,
+                  letterSpacing: 2,
                 ),
                 SizedBox(height: 10),
                 ConstrainedBox(

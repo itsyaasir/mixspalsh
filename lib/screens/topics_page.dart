@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:unspalsh_app/controller/home_contoller.dart';
+import 'package:unspalsh_app/controller/home_controller.dart';
 import 'package:unspalsh_app/controller/topic_controller.dart';
+
+import 'widgets/reusable_text.dart';
 
 class TopicsPage extends StatelessWidget {
   const TopicsPage({Key key}) : super(key: key);
@@ -36,15 +38,20 @@ class TopicsPage extends StatelessWidget {
                     },
                   ),
                   SizedBox(width: 100),
-                  Text(
-                    // Title
-                    // "${Get.arguments[1]}",
-                    "${homeController.topicModel[index].title}",
-                    style: GoogleFonts.bebasNeue(
-                      fontSize: 25,
-                      letterSpacing: 3,
-                    ),
-                  )
+                  // Text(
+                  //   // Title
+                  //   // "${Get.arguments[1]}",
+                  //   ,
+                  //   style: GoogleFonts.bebasNeue(
+                  //     fontSize: 25,
+                  //     letterSpacing: 3,
+                  //   ),
+                  // ),
+                  TextComponent(
+                    title: "${homeController.topicModel[index].title}",
+                    fontSize: 25,
+                    letterSpacing: 3,
+                  ),
                 ],
               ),
               Container(

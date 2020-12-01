@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                         style: GoogleFonts.bebasNeue(
                           color: Colors.black,
                           fontSize: 30,
-                          letterSpacing: 2,
+                          letterSpacing: 3,
                         ),
                       ),
                     ],

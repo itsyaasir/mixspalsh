@@ -1,16 +1,83 @@
-# unspalsh_app
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+</p>
 
-A new Flutter project.
+<h3 align="center">MiXplash</h3>
 
-## Getting Started
+<div align="center">
 
-This project is a starting point for a Flutter application.
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-A few resources to get you started if this is your first Flutter project:
+</div>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+---
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p align="center"> MiXplash : Beautiful Images and Wallpapers
+    <br> 
+</p>
+
+## 📝 Table of Contents
+
+- [📝 Table of Contents](#-table-of-contents)
+- [🖼️ Screenshots <a name = "screenshots"></a>](#️-screenshots-)
+- [🧐 About <a name = "about"></a>](#-about-)
+- [🏁 Getting Started <a name = "getting_started"></a>](#-getting-started-)
+  - [Prerequisites](#prerequisites)
+- [🎈 Usage <a name="usage"></a>](#-usage-)
+- [🚀 Deployment <a name = "deployment"></a>](#-deployment-)
+- [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
+- [✍️ Authors <a name = "authors"></a>](#️-authors-)
+- [🎉 Acknowledgements <a name = "acknowledgement"></a>](#-acknowledgements-)
+
+## 🖼️ Screenshots <a name = "screenshots"></a>
+These are some screenshots of the app.
+<img src="./Screenshot_20201201-072403.jpg" width="400" height="700">
+<img src="./Screenshot_20201201-072422.jpg" width="400" height="700">
+## 🧐 About <a name = "about"></a>
+
+This is personal project for downloading and sharing of photos. Thank to Unsplash for allowing the use of their API .
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software and how to install them.
+
+```
+Flutter & Dart installed.
+Android Studio Code/VSCode installed
+
+```
+
+
+## 🎈 Usage <a name="usage"></a>
+
+The app is pretty self-explanatory
+
+## 🚀 Deployment <a name = "deployment"></a>
+
+You can deploy on the phone either Android/iOS .
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [Dart](https://dart.dev/) - Backend Server
+- [Flutter](https://flutter.dev/) - Front-End Framework
+
+
+## ✍️ Authors <a name = "authors"></a>
+
+- [@itsyaasir](https://github.com/itsyaasir) - Idea & Initial work
+
+See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- References

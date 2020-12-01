@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.only(
-                      top: 5.0, left: 30, right: 30, bottom: 10),
+                      top: 5.0, left: 30, right: 30, bottom: 5),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        "Unsplash",
+                        "MIXPLASH",
                         style: GoogleFonts.bebasNeue(
                           color: Colors.black,
                           fontSize: 35,
@@ -45,19 +45,8 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                TextField(
-                  decoration: InputDecoration(
-                    fillColor: Color(0xffEBEBEC),
-                    filled: true,
-                    contentPadding: const EdgeInsets.all(10.0),
-                    prefixIcon: Icon(Icons.search, color: Colors.black),
-                    labelText: "Search",
-                    labelStyle: GoogleFonts.bebasNeue(color: Colors.black),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                ),
-                SizedBox(height: 10),
+                // TODO:Impement Search here
+                SizedBox(height: 5),
                 Text(
                   "Explore",
                   style: GoogleFonts.bebasNeue(

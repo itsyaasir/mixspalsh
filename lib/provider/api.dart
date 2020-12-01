@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:unspalsh_app/env/env.dart';
 import 'package:unspalsh_app/models/photo_model.dart';
 import 'package:unspalsh_app/models/topic_pic_model.dart';
 import 'package:unspalsh_app/models/topics_model.dart';
 
-// const apiKey = "c2vhGEb8K_UnUzG7cL18r5R8hH5wkDzOfGYLaTWwYqM";
+// Better Immplementation for APIKEY
+// API KEY no longer exposed
+const apiKey = Env.apikey;
 const getPhotoUrl =
     'https://api.unsplash.com/photos/?client_id=$apiKey&per_page=100';
 const getTopicUrl =

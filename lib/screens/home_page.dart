@@ -97,15 +97,17 @@ class HomePage extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) =>
                             GestureDetector(
                           onTap: () {
-                            Get.toNamed("/details", arguments: [
-                              "${controller.photoModel[index].description}",
-                              "${controller.photoModel[index].urls.regular}",
-                              "${controller.photoModel[index].user.name}",
-                              "${controller.photoModel[index].likes}",
-                              "${controller.photoModel[index].altDescription}",
-                              "${controller.photoModel[index].user.profileImage.medium}",
-                              "${controller.photoModel[index].user.location}",
+                            Get.toNamed(
+                              "/details", arguments: [index,
+                              // "${controller.photoModel[index].description}",
+                              // "${controller.photoModel[index].urls.regular}",
+                              // "${controller.photoModel[index].user.name}",
+                              // "${controller.photoModel[index].likes}",
+                              // "${controller.photoModel[index].altDescription}",
+                              // "${controller.photoModel[index].user.profileImage.medium}",
+                              // "${controller.photoModel[index].user.location}",
                               "${controller.photoModel[index].id}"
+                              // "${controller.photoModel[index].blurHash}"
                             ]);
                           },
                           child: new Container(

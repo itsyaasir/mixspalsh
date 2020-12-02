@@ -3,24 +3,30 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share/share.dart';
+import 'package:unspalsh_app/controller/details_controller.dart';
 import 'package:unspalsh_app/provider/image_saver.dart';
+import 'package:unspalsh_app/screens/widgets/image_widget.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    DetailsController detailsController = Get.put(DetailsController());
     // ImageSaver imageSaver = ImageSaver();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Image.network(
-            "${Get.arguments[1]}",
-            fit: BoxFit.cover,
-            height: Get.height,
-            width: Get.width,
-          ),
+          Obx(() {
+            return ImageWidget(
+              imageUrl:
+                  "${detailsController.photoDetailsModel.value.urls.regular}",
+              hashBlur: "${detailsController.photoDetailsModel.value.blurHash}",
+              height: Get.height,
+              width: Get.width,
+            );
+          }),
           Positioned(
             bottom: 0,
             child: Padding(

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:unspalsh_app/env/env.dart';
+import 'package:unspalsh_app/models/photo_details.dart';
 import 'package:unspalsh_app/models/photo_model.dart';
 import 'package:unspalsh_app/models/topic_pic_model.dart';
 import 'package:unspalsh_app/models/topics_model.dart';
@@ -38,7 +39,7 @@ class MyApiClient {
 
   static Future<List<TopicModel>> getTopic() async {
     try {
-      var response = await dio.get(getTopicUrl,
+      var response = await dio.get(  getTopicUrl,
           options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
         var jsonString = response.data.toString();
@@ -68,6 +69,27 @@ class MyApiClient {
         var jsonString = response.data.toString();
         final topicPicModel = topicPicModelFromJson(jsonString);
         return topicPicModel;
+      } else {
+        print('error has occured in getTopicPic()');
+        return null;
+      }
+    } catch (error) {
+      print(error);
+    } finally {
+      print("Reached Here At Topic Photos ");
+    }
+  }
+
+  static Future<PhotoDetailsModel> getPhotoDetails() async {
+    const photoDetailsUrl = "https://api.unsplash.com/photos/gGm63CSfXAo/?client_id=$apiKey";
+    try {
+      var response = await dio.get(photoDetailsUrl,
+          options: Options(responseType: ResponseType.plain));
+      if (response.statusCode == 200) {
+        var jsonString = response.data.toString();
+        print(jsonString);
+        final photoDetailsModel = photoDetailsModelFromJson(jsonString);
+        return photoDetailsModel;
       } else {
         print('error has occured in getTopicPic()');
         return null;

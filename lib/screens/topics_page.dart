@@ -82,16 +82,18 @@ class TopicsPage extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) =>
                           GestureDetector(
                         onTap: () {
-                          Get.toNamed("/details", arguments: [
-                            "${topicController.topicPicModel[index].description}",
-                            "${topicController.topicPicModel[index].urls.regular}",
-                            "${topicController.topicPicModel[index].user.name}",
-                            "${topicController.topicPicModel[index].likes}",
-                            "${topicController.topicPicModel[index].altDescription}",
-                            "${topicController.topicPicModel[index].user.profileImage.medium}",
-                            "${topicController.topicPicModel[index].user.location}",
-                            "${topicController.topicPicModel[index].id}"
-                          ]);
+                          Get.toNamed("/details", arguments: index
+
+                              // "${topicController.topicPicModel[index].description}",
+                              // "${topicController.topicPicModel[index].urls.regular}",
+                              // "${topicController.topicPicModel[index].user.name}",
+                              // "${topicController.topicPicModel[index].likes}",
+                              // "${topicController.topicPicModel[index].altDescription}",
+                              // "${topicController.topicPicModel[index].user.profileImage.medium}",
+                              // "${topicController.topicPicModel[index].user.location}",
+                              // "${topicController.topicPicModel[index].id}",
+                              // "${topicController.topicPicModel[index].blurHash}"
+                              );
                         },
                         child: Container(
                           decoration: BoxDecoration(

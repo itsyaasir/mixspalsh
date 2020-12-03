@@ -9,11 +9,10 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: "/",
+    initialRoute: "/splash",
     defaultTransition: Transition.fade,
     theme: appThemeData,
     getPages: AppPages.pages,
-    home: SplashWidget(),
     initialBinding: HomeBinding(),
   ));
 }

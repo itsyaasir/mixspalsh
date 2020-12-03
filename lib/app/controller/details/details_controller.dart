@@ -34,10 +34,12 @@ class DetailsController extends GetxController {
   final PhotoDetailsRepository repository;
   DetailsController({@required this.repository}) : assert(repository != null);
 
-
   final _photoDetailsModel = PhotoDetailsModel().obs;
-  set photoDetails(photoDetails) =>
-      this._photoDetailsModel.value = photoDetails;
+  set photoDetails(photoDetails) {
+    this._photoDetailsModel.value = photoDetails;
+    this._photoDetailsModel.refresh();
+  }
+
   PhotoDetailsModel get photoDetails => this._photoDetailsModel.value;
 
   getPhotoDetails() {

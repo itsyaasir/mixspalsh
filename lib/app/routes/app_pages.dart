@@ -16,5 +16,6 @@ abstract class AppPages {
         name: Routes.DETAILS,
         page: () => DetailsPage(),
         binding: DetailsBinding()),
+    GetPage(name: Routes.SPLASH, page: () => SplashWidget())
   ];
 }

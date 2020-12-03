@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:unspalsh_app/app/routes/app_pages.dart';
 
-import '../home_page.dart';
+import '../home/home_page.dart';
 
 class SplashWidget extends StatelessWidget {
   const SplashWidget({
@@ -15,7 +16,7 @@ class SplashWidget extends StatelessWidget {
       image: Image.asset("assets/splash.jpg"),
       photoSize: 200,
       seconds: 5,
-      navigateAfterSeconds: new HomePage(),
+      navigateAfterSeconds: HomePage(),
       loaderColor: Colors.black,
     );
   }

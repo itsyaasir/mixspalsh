@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unspalsh_app/app/controller/details/details_controller.dart';
+import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
 
-import 'widgets/image_widget.dart';
-
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key key}) : super(key: key);
-
+class DetailsPage extends GetView<DetailsController> {
   @override
   Widget build(BuildContext context) {
-    DetailsController detailsController = Get.put(DetailsController());
-    // ImageSaver imageSaver = ImageSaver();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Obx(() {
-            return ImageWidget(
-              imageUrl:
-                  "${detailsController.photoDetailsModel.value.urls.regular}",
-              hashBlur: "${detailsController.photoDetailsModel.value.blurHash}",
-              height: Get.height,
-              width: Get.width,
-            );
-          }),
+          GetX<DetailsController>(
+            initState: (state) {
+              Get.find<DetailsController>().getPhotoDetails();
+              print("getPhotoDetails initialized");
+            },
+            builder: (_) {
+              return ImageWidget(
+                imageUrl: "${_.photoDetails.urls.regular}",
+                hashBlur: "${_.photoDetails.blurHash}",
+                height: Get.height,
+                width: Get.width,
+              );
+            },
+          ),
           Positioned(
             bottom: 0,
             child: Padding(

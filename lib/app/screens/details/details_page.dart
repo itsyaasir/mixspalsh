@@ -10,19 +10,14 @@ class DetailsPage extends GetView<DetailsController> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          GetX<DetailsController>(
-            initState: (state) {
-              Get.find<DetailsController>().getPhotoDetails();
-              print("getPhotoDetails initialized");
-            },
-            builder: (_) {
-              return ImageWidget(
-                imageUrl: "${_.photoDetails.urls.regular}",
-                hashBlur: "${_.photoDetails.blurHash}",
-                height: Get.height,
-                width: Get.width,
-              );
-            },
+          controller.obx(
+            // Use this for better loading and error showing.
+            (state) => ImageWidget(
+              imageUrl: "${state.urls.regular}",
+              hashBlur: "${state.blurHash}",
+              height: Get.height,
+              width: Get.width,
+            ),
           ),
           Positioned(
             bottom: 0,

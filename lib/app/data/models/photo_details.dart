@@ -823,13 +823,17 @@ class Sponsorship {
   String taglineUrl;
   User sponsor;
 
-  factory Sponsorship.fromJson(Map<String, dynamic> json) => Sponsorship(
-        impressionUrls:
-            List<String>.from(json["impression_urls"].map((x) => x)),
-        tagline: json["tagline"],
-        taglineUrl: json["tagline_url"],
-        sponsor: User.fromJson(json["sponsor"]),
-      );
+  factory Sponsorship.fromJson(Map<String, dynamic> json) {
+    if (json == null) return null; // is the fix for the null error.
+    return Sponsorship(
+      impressionUrls: (json.containsKey('impression_urls'))
+          ? List<String>.from(json["impression_urls"].map((x) => x))
+          : null,
+      tagline: json["tagline"],
+      taglineUrl: json["tagline_url"],
+      sponsor: User.fromJson(json["sponsor"]),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "impression_urls": List<dynamic>.from(impressionUrls.map((x) => x)),

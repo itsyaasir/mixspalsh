@@ -30,23 +30,34 @@ import 'package:unspalsh_app/app/controller/home/home_controller.dart';
 import 'package:unspalsh_app/app/data/models/photo_details.dart';
 import 'package:unspalsh_app/app/data/repository/photo_details_repository.dart';
 
-class DetailsController extends GetxController {
+class DetailsController extends GetxController
+    with StateMixin<PhotoDetailsModel> {
+  // For the controller.obx
   final PhotoDetailsRepository repository;
   DetailsController({@required this.repository}) : assert(repository != null);
 
   final _photoDetailsModel = PhotoDetailsModel().obs;
-  set photoDetails(photoDetails) {
-    this._photoDetailsModel.value = photoDetails;
-    this._photoDetailsModel.refresh();
-  }
-
+  set photoDetails(photoDetails) =>
+      this._photoDetailsModel.value = photoDetails;
   PhotoDetailsModel get photoDetails => this._photoDetailsModel.value;
 
-  getPhotoDetails() {
+  getPhotoDetails() async {
     String id = Get.find<HomeController>().id;
-    repository.getPhotoDetails(id).then((data) {
-      this.photoDetails = data;
-      return this.photoDetails;
-    });
+    var data;
+    try {
+      data = await repository.getPhotoDetails(id);
+      change(data,
+          status: RxStatus.success()); // For the StateMixin to show data
+    } catch (e) {
+      change(null,
+          status:
+              RxStatus.error(e.toString())); // For the StateMixin to show error
+    }
+  }
+
+  @override
+  void onInit() {
+    getPhotoDetails(); // To call the method
+    super.onInit();
   }
 }

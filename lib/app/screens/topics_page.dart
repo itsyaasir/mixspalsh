@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:unspalsh_app/controller/home_controller.dart';
-import 'package:unspalsh_app/controller/topic_controller.dart';
+import 'package:unspalsh_app/app/controller/home/home_controller.dart';
+import 'package:unspalsh_app/app/controller/topics/topic_controller.dart';
 
 import 'widgets/reusable_text_bebas.dart';
 

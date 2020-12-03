@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
-import 'package:unspalsh_app/env/env.dart';
-import 'package:unspalsh_app/models/photo_details.dart';
-import 'package:unspalsh_app/models/photo_model.dart';
-import 'package:unspalsh_app/models/topic_pic_model.dart';
-import 'package:unspalsh_app/models/topics_model.dart';
+import 'package:unspalsh_app/app/env/env.dart';
+import 'package:unspalsh_app/app/data/models/photo_details.dart';
+import 'package:unspalsh_app/app/data/models/photo_model.dart';
+import 'package:unspalsh_app/app/data/models/topic_pic_model.dart';
+import 'package:unspalsh_app/app/data/models/topics_model.dart';
 
 // Better Immplementation for APIKEY
 // API KEY no longer exposed
@@ -39,7 +39,7 @@ class MyApiClient {
 
   static Future<List<TopicModel>> getTopic() async {
     try {
-      var response = await dio.get(  getTopicUrl,
+      var response = await dio.get(getTopicUrl,
           options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
         var jsonString = response.data.toString();
@@ -81,7 +81,8 @@ class MyApiClient {
   }
 
   static Future<PhotoDetailsModel> getPhotoDetails() async {
-    const photoDetailsUrl = "https://api.unsplash.com/photos/gGm63CSfXAo/?client_id=$apiKey";
+    const photoDetailsUrl =
+        "https://api.unsplash.com/photos/gGm63CSfXAo/?client_id=$apiKey";
     try {
       var response = await dio.get(photoDetailsUrl,
           options: Options(responseType: ResponseType.plain));

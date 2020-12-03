@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share/share.dart';
-import 'package:unspalsh_app/controller/details_controller.dart';
-import 'package:unspalsh_app/provider/image_saver.dart';
-import 'package:unspalsh_app/screens/widgets/image_widget.dart';
+import 'package:unspalsh_app/app/controller/details/details_controller.dart';
+
+import 'widgets/image_widget.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key key}) : super(key: key);

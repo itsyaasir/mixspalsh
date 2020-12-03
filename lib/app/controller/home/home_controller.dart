@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:unspalsh_app/app/data/models/photo_model.dart';
 import 'package:unspalsh_app/app/data/models/topics_model.dart';
-import 'package:unspalsh_app/app/provider/api.dart';
+import 'package:unspalsh_app/app/data/provider/api.dart';
 
 class HomeController extends GetxController {
   var isLoading = true.obs;

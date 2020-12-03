@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:unspalsh_app/app/data/models/photo_details.dart';
-import 'package:unspalsh_app/app/provider/api.dart';
+import 'package:unspalsh_app/app/data/provider/api.dart';
 
 class DetailsController extends GetxController {
   final photoDetailsModel = PhotoDetailsModel().obs;

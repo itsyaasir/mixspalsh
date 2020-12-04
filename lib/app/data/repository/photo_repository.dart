@@ -11,4 +11,8 @@ class PhotoRepository {
   Future<List<PhotoModel>> getPhotos() {
     return apiClient.getPhotos();
   }
+
+  Future<List<TopicModel>> getTopics() {
+    return apiClient.getTopics();
+  }
 }

@@ -12,6 +12,6 @@ void main() {
     defaultTransition: Transition.fade,
     theme: appThemeData,
     getPages: AppPages.pages,
-    // initialBinding:HomeBinding(),
+    initialBinding: HomeBinding(),
   ));
 }

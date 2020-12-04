@@ -12,7 +12,7 @@ abstract class AppPages {
     GetPage(
         name: Routes.INITIAL,
         page: () => HomePage(),
-        bindings: [TopicsBinding(), HomeBinding()]),
+        bindings: [HomeBinding()]),
     GetPage(
         name: Routes.DETAILS,
         page: () => DetailsPage(),

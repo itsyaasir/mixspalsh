@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:unspalsh_app/app/controller/home/home_controller.dart';
-import 'package:unspalsh_app/app/controller/topics/topics_controller.dart';
-import 'package:unspalsh_app/app/data/provider/api.dart';
-import 'package:unspalsh_app/app/data/repository/topics_repository.dart';
 import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
+import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
 import '../widgets/reusable_text_bebas.dart';
 
-class HomePage extends GetView<TopicsController> {
+class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,42 +38,41 @@ class HomePage extends GetView<TopicsController> {
                     ],
                   ),
                 ),
-                // TODO:Impement Search here
                 SizedBox(height: 5),
                 TextComponent(title: "Explore", fontSize: 20, letterSpacing: 2),
                 SizedBox(height: 10),
                 Container(
                     height: 150,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.topicModel.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            margin: EdgeInsets.only(right: 7),
-                            width: 300,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                    "${controller.topicModel[index].coverPhoto}"),
-                                fit: BoxFit.cover,
-                                colorFilter: new ColorFilter.mode(
-                                    Colors.black.withOpacity(0.7),
-                                    BlendMode.dstATop),
-                              ),
-                            ),
-                            child: Center(
-                              child: TextComponent(
-                                  title:
-                                      "${controller.topicModel[index].title}",
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  letterSpacing: 10),
-                            ),
-                          )),
-                    )),
+                    child: Obx(() => ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: controller.topicModel.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                margin: EdgeInsets.only(right: 7),
+                                width: 300,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        "${controller.topicModel[index].coverPhoto.urls.small}"),
+                                    fit: BoxFit.cover,
+                                    colorFilter: new ColorFilter.mode(
+                                        Colors.black.withOpacity(0.7),
+                                        BlendMode.dstATop),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: TextComponent(
+                                      title:
+                                          "${controller.topicModel[index].title}",
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      letterSpacing: 10),
+                                ),
+                              )),
+                        ))),
 
                 SizedBox(height: 10),
                 TextComponent(
@@ -101,11 +98,13 @@ class HomePage extends GetView<TopicsController> {
                                   onTap: () {
                                     _.details(id: _.photoList[index].id);
                                   },
-                                  child: new ImageWidget(
-                                      imageUrl:
-                                          "${_.photoList[index].urls.regular}",
-                                      hashBlur:
-                                          "${_.photoList[index].blurHash}")),
+                                  child: (_.photoList == null)
+                                      ? LoadingWidget()
+                                      : ImageWidget(
+                                          imageUrl:
+                                              "${_.photoList[index].urls.regular}",
+                                          hashBlur:
+                                              "${_.photoList[index].blurHash}")),
                           staggeredTileBuilder: (int index) =>
                               StaggeredTile.count(2, index.isEven ? 4 : 3),
                           mainAxisSpacing: 7.0,

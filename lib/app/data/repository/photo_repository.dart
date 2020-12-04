@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:unspalsh_app/app/data/models/photo_model.dart';
+import 'package:unspalsh_app/app/data/models/topics_model.dart';
 import 'package:unspalsh_app/app/data/provider/api.dart';
 
 class PhotoRepository {

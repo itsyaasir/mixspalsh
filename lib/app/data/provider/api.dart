@@ -106,17 +106,20 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:unspalsh_app/app/data/models/photo_details.dart';
 import 'package:unspalsh_app/app/data/models/photo_model.dart';
+import 'package:unspalsh_app/app/data/models/topics_model.dart';
 import 'package:unspalsh_app/app/env/env.dart';
 
 const apiKey = Env.apikey;
 const baseUrl = 'https://api.unsplash.com/';
 
 const PhotoUrl = 'photos/?client_id=$apiKey&per_page=1000';
+const topicURl = 'topics/?client_id=$apiKey&per_page=100';
 
 class MyApiClient {
   final Dio httpClient;
   MyApiClient({@required this.httpClient});
 
+  // ignore: missing_return
   Future<List<PhotoModel>> getPhotos() async {
     try {
       var response = await httpClient.get(baseUrl + PhotoUrl,
@@ -133,18 +136,36 @@ class MyApiClient {
     }
   }
 
+  // ignore: missing_return
   Future<PhotoDetailsModel> getPhotoDetails(id) async {
-    print("$id in the function getPhotoDetails()");
     String photoDetailURl = "/photos/$id/?client_id=$apiKey";
     try {
       var response = await httpClient.get(baseUrl + photoDetailURl,
           options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
-        print(response.statusCode);
         var jsonString = response.data.toString();
         print(jsonString);
         final photoDetailsModel = photoDetailsModelFromJson(jsonString);
         return photoDetailsModel;
+      } else
+        print('erro -get');
+      return null;
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  // ignore: missing_return
+  Future<List<TopicModel>> getTopics() async {
+    try {
+      var response = await httpClient.get(baseUrl + topicURl,
+          options: Options(responseType: ResponseType.plain));
+      if (response.statusCode == 200) {
+        print(response.statusCode);
+        var jsonString = response.data.toString();
+        print(jsonString);
+        final topicModel = topicModelFromJson(jsonString);
+        return topicModel;
       } else
         print('erro -get');
       return null;

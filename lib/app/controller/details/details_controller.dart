@@ -47,6 +47,7 @@ class DetailsController extends GetxController
       this._photoDetailsModel.value = photoDetails;
   PhotoDetailsModel get photoDetails => this._photoDetailsModel.value;
 
+  // ignore: missing_return
   Future<PhotoDetailsModel> getPhotoDetails() async {
     String id = Get.find<HomeController>().id;
     var data;

@@ -7,8 +7,6 @@ class HomeController extends GetxController {
   var isLoading = true.obs;
   final photoModel = List<PhotoModel>().obs;
   final topicModel = List<TopicModel>().obs;
-  // set photoModel(value) => this._photoModel.assignAll(value);
-  // get photoModel => this._photoModel.value;
   @override
   void onInit() {
     fetchPhotos();

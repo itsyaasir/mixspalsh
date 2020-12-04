@@ -1,4 +1,4 @@
-package com.example.unspalsh_app
+package com.yasir.mixplash
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:unspalsh_app/controller/home_contoller.dart';
+import 'package:unspalsh_app/controller/home_controller.dart';
+import 'widgets/reusable_text_bebas.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.put(HomeController());
-    final iconSvg = "assets/icon.svg";
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -28,32 +24,21 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        iconSvg,
-                        height: 35,
+                      Image.asset(
+                        "assets/icon.png",
                         fit: BoxFit.cover,
+                        width: 45,
+                        height: 40,
                       ),
                       SizedBox(width: 5),
-                      Text(
-                        "MIXPLASH",
-                        style: GoogleFonts.bebasNeue(
-                          color: Colors.black,
-                          fontSize: 35,
-                          letterSpacing: 2,
-                        ),
-                      ),
+                      TextComponent(
+                          title: "MiXplash", fontSize: 30, letterSpacing: 3),
                     ],
                   ),
                 ),
                 // TODO:Impement Search here
                 SizedBox(height: 5),
-                Text(
-                  "Explore",
-                  style: GoogleFonts.bebasNeue(
-                    letterSpacing: 2,
-                    fontSize: 20,
-                  ),
-                ),
+                TextComponent(title: "Explore", fontSize: 20, letterSpacing: 2),
                 SizedBox(height: 10),
                 Container(
                   height: 150,
@@ -65,9 +50,8 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           Get.toNamed("/topics", arguments: [
+                            index,
                             "${controller.topicModel[index].id}",
-                            "${controller.topicModel[index].title}",
-                            "${controller.topicModel[index].coverPhoto.urls.small}",
                           ]);
                         },
                         child: Container(
@@ -85,14 +69,11 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           child: Center(
-                            child: Text(
-                              "${controller.topicModel[index].title}",
-                              style: GoogleFonts.bebasNeue(
-                                color: Colors.white,
-                                letterSpacing: 10,
+                            child: TextComponent(
+                                title: "${controller.topicModel[index].title}",
                                 fontSize: 20,
-                              ),
-                            ),
+                                color: Colors.white,
+                                letterSpacing: 10),
                           ),
                         ),
                       ),
@@ -100,12 +81,10 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10),
-                Text(
-                  "Popular",
-                  style: GoogleFonts.bebasNeue(
-                    letterSpacing: 2,
-                    fontSize: 20,
-                  ),
+                TextComponent(
+                  title: "Popular",
+                  fontSize: 20,
+                  letterSpacing: 2,
                 ),
                 SizedBox(height: 10),
                 ConstrainedBox(
@@ -141,8 +120,8 @@ class HomePage extends StatelessWidget {
                         ),
                         staggeredTileBuilder: (int index) =>
                             StaggeredTile.count(2, index.isEven ? 4 : 3),
-                        mainAxisSpacing: 5.0,
-                        crossAxisSpacing: 5.0,
+                        mainAxisSpacing: 7.0,
+                        crossAxisSpacing: 7.0,
                       )),
                 ),
               ],

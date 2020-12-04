@@ -41,8 +41,7 @@
 // }
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
-import 'package:unspalsh_app/app/data/models/photo_model.dart';
-import 'package:unspalsh_app/app/data/models/topics_model.dart';
+import 'package:unspalsh_app/app/data/models/trending_photo_model.dart';
 import 'package:unspalsh_app/app/data/repository/photo_repository.dart';
 import 'package:unspalsh_app/app/routes/app_pages.dart';
 
@@ -51,21 +50,21 @@ class HomeController extends GetxController {
   HomeController({@required this.repository}) : assert(repository != null);
   @override
   void onInit() {
-    getTopics();
+    getPhotos();
     super.onInit();
   }
 
-  final _photoModel = List<PhotoModel>().obs;
-
+  // TopicID
+  final _topicId = "".obs;
+  get topicId => this._topicId.value;
+  set topicId(value) => this._topicId.value = value;
   // Id of the photo
   final _id = "".obs;
   set id(value) => this._id.value = value;
   get id => this._id.value;
 
-  List<PhotoModel> get photoList {
-    return this._photoModel.toList();
-  }
-
+  final _photoModel = List<PhotoModel>().obs;
+  List<PhotoModel> get photoList => this._photoModel.toList();
   set photoList(photos) => this._photoModel.assignAll(photos);
 
   List<PhotoModel> getPhotos() {
@@ -80,14 +79,8 @@ class HomeController extends GetxController {
     Get.toNamed(Routes.DETAILS);
   }
 
-  final _topicModel = List<TopicModel>().obs;
-  List<TopicModel> get topicModel => this._topicModel.toList();
-  set topicModel(topics) => this._topicModel.assignAll(topics);
-
-  List<TopicModel> getTopics() {
-    repository.getTopics().then((data) {
-      this.topicModel = data;
-      return this.topicModel;
-    });
+  topicPics(String topicId) {
+    this.topicId = topicId;
+    Get.toNamed(Routes.TOPIC);
   }
 }

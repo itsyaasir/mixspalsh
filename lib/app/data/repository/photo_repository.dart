@@ -1,6 +1,5 @@
 import 'package:meta/meta.dart';
-import 'package:unspalsh_app/app/data/models/photo_model.dart';
-import 'package:unspalsh_app/app/data/models/topics_model.dart';
+import 'package:unspalsh_app/app/data/models/trending_photo_model.dart';
 import 'package:unspalsh_app/app/data/provider/api.dart';
 
 class PhotoRepository {
@@ -10,9 +9,5 @@ class PhotoRepository {
 
   Future<List<PhotoModel>> getPhotos() {
     return apiClient.getPhotos();
-  }
-
-  Future<List<TopicModel>> getTopics() {
-    return apiClient.getTopics();
   }
 }

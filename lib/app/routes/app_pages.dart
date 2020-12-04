@@ -4,6 +4,7 @@ import 'package:unspalsh_app/app/bindings/home_bindings.dart';
 import 'package:unspalsh_app/app/bindings/topics_bindings.dart';
 import 'package:unspalsh_app/app/screens/details/details_page.dart';
 import 'package:unspalsh_app/app/screens/home/home_page.dart';
+import 'package:unspalsh_app/app/screens/topics/topics_page.dart';
 import 'package:unspalsh_app/app/screens/widgets/splash_widget.dart';
 part './app_routes.dart';
 
@@ -12,11 +13,13 @@ abstract class AppPages {
     GetPage(
         name: Routes.INITIAL,
         page: () => HomePage(),
-        bindings: [HomeBinding()]),
+        bindings: [HomeBinding(), TopicsBinding()]),
     GetPage(
         name: Routes.DETAILS,
         page: () => DetailsPage(),
         binding: DetailsBinding()),
-    GetPage(name: Routes.SPLASH, page: () => SplashWidget())
+    GetPage(name: Routes.SPLASH, page: () => SplashWidget()),
+    // GetPage(
+    // name: Routes.TOPIC, page: () => TopicsPage(), binding: TopicsBinding())
   ];
 }

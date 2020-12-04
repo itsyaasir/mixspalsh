@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:unspalsh_app/app/controller/home/home_controller.dart';
+import 'package:unspalsh_app/app/controller/topics/topics_controller.dart';
 import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
 import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
 import '../widgets/reusable_text_bebas.dart';
 
-class HomePage extends GetView<HomeController> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<TopicsController>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -48,7 +50,10 @@ class HomePage extends GetView<HomeController> {
                           itemCount: controller.topicModel.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                // controller
+                                //     .topicPics(controller.topicModel[index].id);
+                              },
                               child: Container(
                                 margin: EdgeInsets.only(right: 7),
                                 width: 300,
@@ -56,7 +61,7 @@ class HomePage extends GetView<HomeController> {
                                   borderRadius: BorderRadius.circular(8),
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        "${controller.topicModel[index].coverPhoto.urls.small}"),
+                                        "${controller.topicModel[index].coverPhoto.urls.regular}"),
                                     fit: BoxFit.cover,
                                     colorFilter: new ColorFilter.mode(
                                         Colors.black.withOpacity(0.7),
@@ -73,7 +78,6 @@ class HomePage extends GetView<HomeController> {
                                 ),
                               )),
                         ))),
-
                 SizedBox(height: 10),
                 TextComponent(
                   title: "Popular",

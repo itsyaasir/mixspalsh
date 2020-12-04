@@ -36,12 +36,18 @@ class DetailsController extends GetxController
   final PhotoDetailsRepository repository;
   DetailsController({@required this.repository}) : assert(repository != null);
 
+  @override
+  void onInit() {
+    getPhotoDetails(); // To call the method
+    super.onInit();
+  }
+
   final _photoDetailsModel = PhotoDetailsModel().obs;
   set photoDetails(photoDetails) =>
       this._photoDetailsModel.value = photoDetails;
   PhotoDetailsModel get photoDetails => this._photoDetailsModel.value;
 
-  getPhotoDetails() async {
+  Future<PhotoDetailsModel> getPhotoDetails() async {
     String id = Get.find<HomeController>().id;
     var data;
     try {
@@ -53,11 +59,5 @@ class DetailsController extends GetxController
           status:
               RxStatus.error(e.toString())); // For the StateMixin to show error
     }
-  }
-
-  @override
-  void onInit() {
-    getPhotoDetails(); // To call the method
-    super.onInit();
   }
 }

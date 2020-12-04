@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unspalsh_app/app/controller/details/details_controller.dart';
 import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
+import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
 
 class DetailsPage extends GetView<DetailsController> {
   @override
@@ -12,19 +13,13 @@ class DetailsPage extends GetView<DetailsController> {
         children: [
           controller.obx(
               // Use this for better loading and error showing.
-
               (state) => ImageWidget(
                     imageUrl: "${state.urls.regular}",
                     hashBlur: "${state.blurHash}",
                     height: Get.height,
                     width: Get.width,
                   ),
-              onLoading: Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
-                  valueColor: new AlwaysStoppedAnimation(Colors.black),
-                ),
-              )),
+              onLoading: LoadingWidget()),
           Positioned(
             bottom: 0,
             child: Padding(

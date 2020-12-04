@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:unspalsh_app/app/data/models/photo_details.dart';
 import 'package:unspalsh_app/app/data/provider/api.dart';
 
 class PhotoDetailsRepository {
@@ -7,7 +8,7 @@ class PhotoDetailsRepository {
   PhotoDetailsRepository({@required this.apiClient})
       : assert(apiClient != null);
 
-  getPhotoDetails(String id) {
+  Future<PhotoDetailsModel> getPhotoDetails(String id) {
     return apiClient.getPhotoDetails(id);
   }
 }

@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:unspalsh_app/app/controller/details/details_controller.dart';
-import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
-import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:share/share.dart';
+import 'package:unspalsh_app/provider/image_saver.dart';
 
-class DetailsPage extends GetView<DetailsController> {
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    // ImageSaver imageSaver = ImageSaver();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          controller.obx(
-              // Use this for better loading and error showing.
-              (state) => ImageWidget(
-                    imageUrl: "${state.urls.regular}",
-                    hashBlur: "${state.blurHash}",
-                    height: Get.height,
-                    width: Get.width,
-                  ),
-              onLoading: LoadingWidget()),
+          Image.network(
+            "${Get.arguments[1]}",
+            fit: BoxFit.cover,
+            height: Get.height,
+            width: Get.width,
+          ),
           Positioned(
             bottom: 0,
             child: Padding(

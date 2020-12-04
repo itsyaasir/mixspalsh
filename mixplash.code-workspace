@@ -1,0 +1,12 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"name": "unspalsh_app @ beta",
+		"uri": "gitlens://beta/home/alpha/Documents/Code/Flutter/unspalsh_app?{\"path\":\"/home/alpha/Documents/Code/Flutter/unspalsh_app\",\"ref\":\"beta\",\"repoPath\":\"/home/alpha/Documents/Code/Flutter/unspalsh_app\"}"
+	}
+],
+  "settings": {}
+}

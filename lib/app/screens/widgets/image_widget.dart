@@ -20,18 +20,19 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OctoImage(
-      
-      image: CachedNetworkImageProvider(imageUrl),
-      placeholderBuilder: OctoPlaceholder.blurHash(
-        hashBlur,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: OctoImage(
+        image: CachedNetworkImageProvider(imageUrl),
+        placeholderBuilder: OctoPlaceholder.blurHash(
+          hashBlur,
+        ),
+        errorBuilder: OctoError.icon(color: Colors.red),
+        fit: BoxFit.cover,
+        height: height,
+        width: width,
+        colorBlendMode: colorBlendMode,
       ),
-      errorBuilder: OctoError.icon(color: Colors.red),
-      fit: BoxFit.cover,
-      height: height,
-      width: width,
-      colorBlendMode: colorBlendMode,
-
     );
   }
 }

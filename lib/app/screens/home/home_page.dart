@@ -11,6 +11,7 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final topicController = Get.find<TopicsController>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -50,16 +51,16 @@ class HomePage extends GetView<HomeController> {
                             itemCount: state.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                controller.topicPics(
+                                    topicId: state[index].id, index: index);
+                              },
                               child: Stack(
                                 children: [
                                   Container(
                                     margin: const EdgeInsets.only(right: 7),
                                     width: 300,
                                     height: 200,
-                                    decoration: new BoxDecoration(
-                                      borderRadius: BorderRadius.circular(108),
-                                    ),
                                     child: ImageWidget(
                                       imageUrl:
                                           "${state[index].coverPhoto.urls.small}",

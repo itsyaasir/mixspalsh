@@ -105,6 +105,7 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:unspalsh_app/app/data/models/photo_details.dart';
+import 'package:unspalsh_app/app/data/models/topic_pics_model.dart';
 import 'package:unspalsh_app/app/data/models/trending_photo_model.dart';
 import 'package:unspalsh_app/app/data/models/topics_model.dart';
 import 'package:unspalsh_app/app/env/env.dart';
@@ -161,7 +162,6 @@ class MyApiClient {
           options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
         var jsonString = response.data.toString();
-        print(jsonString);
         final topicModel = topicModelFromJson(jsonString);
         return topicModel;
       } else
@@ -172,22 +172,23 @@ class MyApiClient {
     }
   }
 
-  // Future <TopicPicsModel> getTopicPics(topicId) async {
-  //   String topicPicUrl = 'topics/$topicId/?client_id=$apiKey&per_page=100';
-  //   try {
-  //     var response = await httpClient.get(baseUrl + topicPicUrl,
-  //         options: Options(responseType: ResponseType.plain));
-  //     if (response.statusCode == 200) {
-  //       print(response.statusCode);
-  //       var jsonString = response.data.toString();
-  //       print(jsonString);
-  //       final topicPicksModel = topicPicsModelFromJson(jsonString);
-  //       return topicPicksModel;
-  //     } else
-  //       print('erro -get');
-  //     return null;
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  // }
+  // ignore: missing_return
+  Future<List<TopicPicModel>> getTopicPics(topicId) async {
+    String topicPicUrl =
+        'topics/$topicId/photos/?client_id=$apiKey&per_page=100';
+    try {
+      var response = await httpClient.get(baseUrl + topicPicUrl,
+          options: Options(responseType: ResponseType.plain));
+      if (response.statusCode == 200) {
+        var jsonString = response.data.toString();
+        print(jsonString);
+        final topicPicsModel = topicPicModelFromJson(jsonString);
+        return topicPicsModel;
+      } else
+        print('erro -get');
+      return null;
+    } catch (error) {
+      print(error);
+    }
+  }
 }

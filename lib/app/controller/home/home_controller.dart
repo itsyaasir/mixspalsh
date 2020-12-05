@@ -62,12 +62,16 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   final _id = "".obs;
   set id(value) => this._id.value = value;
   get id => this._id.value;
+// Index of the photo
+  final _index = 0.obs;
+  get index => this._index.value;
+  set index(value) => this._index.value = value;
 
+  // PhotoModel
   final _photoModel = List<PhotoModel>().obs;
   List<PhotoModel> get photoList => this._photoModel.toList();
   set photoList(photos) => this._photoModel.assignAll(photos);
 
-  
   // ignore: missing_return
   Future<List<PhotoModel>> getPhotos() async {
     var data;
@@ -84,8 +88,9 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
     Get.toNamed(Routes.DETAILS);
   }
 
-  topicPics(String topicId) {
+  topicPics({String topicId, int index}) {
     this.topicId = topicId;
+    this.index = index;
     Get.toNamed(Routes.TOPIC);
   }
 }

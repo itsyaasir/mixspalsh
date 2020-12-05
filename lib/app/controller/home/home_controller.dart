@@ -54,6 +54,10 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
     super.onInit();
   }
 
+  // SelectedIndex for bottomNavigationBar
+  final _selectedIndex = 0.obs;
+  get selectedIndex => this._selectedIndex.value;
+  set selectedIndex(value) => this._selectedIndex.value = value;
   // TopicID
   final _topicId = "".obs;
   get topicId => this._topicId.value;

@@ -1,126 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:unspalsh_app/app/controller/home/home_controller.dart';
 import 'package:unspalsh_app/app/controller/topics/topics_controller.dart';
-import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
-import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
-import '../widgets/reusable_text_bebas.dart';
+import 'package:unspalsh_app/app/screens/collection/collection_page.dart';
+import 'package:unspalsh_app/app/screens/home/home_widget.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final topicController = Get.find<TopicsController>();
-
+    List<Widget> pages = [
+      HomeWidget(topicController: topicController, controller: controller),
+      CollectionWidet(),
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
+      extendBody: true,
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.collections_outlined), label: "Collection"),
+            ],
+            selectedIconTheme: IconThemeData(color: Colors.black),
+            selectedItemColor: Colors.black,
+            backgroundColor: Color(0x00ffffff),
+            currentIndex: controller.selectedIndex,
+            onTap: (index) => controller.selectedIndex = index,
+          )),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(
-                      top: 5.0, left: 30, right: 30, bottom: 5),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/icon.png",
-                        fit: BoxFit.cover,
-                        width: 45,
-                        height: 40,
-                      ),
-                      SizedBox(width: 5),
-                      TextComponent(
-                          title: "MiXplash", fontSize: 30, letterSpacing: 3),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 5),
-                TextComponent(title: "Explore", fontSize: 20, letterSpacing: 2),
-                SizedBox(height: 10),
-                Container(
-                  height: 150,
-                  child: topicController.obx(
-                      (state) => ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: state.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                controller.topicPics(
-                                    topicId: state[index].id, index: index);
-                              },
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(right: 7),
-                                    width: 300,
-                                    height: 200,
-                                    child: ImageWidget(
-                                      imageUrl:
-                                          "${state[index].coverPhoto.urls.small}",
-                                      hashBlur:
-                                          "${state[index].coverPhoto.blurHash}",
-                                      colorBlendMode: BlendMode.dstATop,
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    child: Align(
-                                      child: TextComponent(
-                                        title: "${state[index].title}",
-                                        fontSize: 20,
-                                        color: Colors.white.withOpacity(1),
-                                        letterSpacing: 15,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                      onLoading: LoadingWidget()),
-                ),
-                SizedBox(height: 10),
-                TextComponent(
-                  title: "Popular",
-                  fontSize: 20,
-                  letterSpacing: 2,
-                ),
-                SizedBox(height: 10),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: double.infinity),
-                  child: controller.obx(
-                      (state) => Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100)),
-                            child: StaggeredGridView.countBuilder(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              crossAxisCount: 4,
-                              itemCount: state.length,
-                              itemBuilder: (BuildContext context, int index) =>
-                                  GestureDetector(
-                                onTap: () {
-                                  controller.details(id: state[index].id);
-                                },
-                                child: ImageWidget(
-                                    imageUrl: "${state[index].urls.regular}",
-                                    hashBlur: "${state[index].blurHash}"),
-                              ),
-                              staggeredTileBuilder: (int index) =>
-                                  StaggeredTile.count(2, index.isEven ? 4 : 3),
-                              mainAxisSpacing: 7.0,
-                              crossAxisSpacing: 7.0,
-                            ),
-                          ),
-                      onLoading: LoadingWidget()),
-                )
-              ],
+        child: LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Obx(() => pages.elementAt(controller.selectedIndex)),
             ),
           ),
         ),
@@ -128,3 +41,7 @@ class HomePage extends GetView<HomeController> {
     );
   }
 }
+
+//
+//
+//

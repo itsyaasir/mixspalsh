@@ -67,13 +67,8 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   List<PhotoModel> get photoList => this._photoModel.toList();
   set photoList(photos) => this._photoModel.assignAll(photos);
 
-  // List<PhotoModel> getPhotos() {
-  //   repository.getPhotos().then((data) {
-  //     this.photoList = data;
-  //     return this.photoList;
-  //   });
-  // }
-
+  
+  // ignore: missing_return
   Future<List<PhotoModel>> getPhotos() async {
     var data;
     try {

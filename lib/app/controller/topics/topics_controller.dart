@@ -53,6 +53,7 @@ class TopicsController extends GetxController
   List<TopicModel> get topicModel => this._topicModel.toList();
   set topicModel(topics) => this._topicModel.assignAll(topics);
 
+  // ignore: missing_return
   Future<List<TopicModel>> getTopics() async {
     var data;
     try {

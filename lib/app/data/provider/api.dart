@@ -161,6 +161,7 @@ class MyApiClient {
           options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
         var jsonString = response.data.toString();
+        print(jsonString);
         final topicModel = topicModelFromJson(jsonString);
         return topicModel;
       } else

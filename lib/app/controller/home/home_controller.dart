@@ -45,7 +45,7 @@ import 'package:unspalsh_app/app/data/models/trending_photo_model.dart';
 import 'package:unspalsh_app/app/data/repository/photo_repository.dart';
 import 'package:unspalsh_app/app/routes/app_pages.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   final PhotoRepository repository;
   HomeController({@required this.repository}) : assert(repository != null);
   @override
@@ -67,11 +67,21 @@ class HomeController extends GetxController {
   List<PhotoModel> get photoList => this._photoModel.toList();
   set photoList(photos) => this._photoModel.assignAll(photos);
 
-  List<PhotoModel> getPhotos() {
-    repository.getPhotos().then((data) {
-      this.photoList = data;
-      return this.photoList;
-    });
+  // List<PhotoModel> getPhotos() {
+  //   repository.getPhotos().then((data) {
+  //     this.photoList = data;
+  //     return this.photoList;
+  //   });
+  // }
+
+  Future<List<PhotoModel>> getPhotos() async {
+    var data;
+    try {
+      data = await repository.getPhotos();
+      change(data, status: RxStatus.success());
+    } catch (e) {
+      change(null, status: RxStatus.error(e.toString()));
+    }
   }
 
   details({String id}) {

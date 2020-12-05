@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -8,10 +7,10 @@ import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
 import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
 import '../widgets/reusable_text_bebas.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<TopicsController>();
+    final topicController = Get.find<TopicsController>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -44,40 +43,47 @@ class HomePage extends StatelessWidget {
                 TextComponent(title: "Explore", fontSize: 20, letterSpacing: 2),
                 SizedBox(height: 10),
                 Container(
-                    height: 150,
-                    child: Obx(() => ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: controller.topicModel.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                // controller
-                                //     .topicPics(controller.topicModel[index].id);
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(right: 7),
-                                width: 300,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        "${controller.topicModel[index].coverPhoto.urls.regular}"),
-                                    fit: BoxFit.cover,
-                                    colorFilter: new ColorFilter.mode(
-                                        Colors.black.withOpacity(0.7),
-                                        BlendMode.dstATop),
+                  height: 150,
+                  child: topicController.obx(
+                      (state) => ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: state.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {},
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 7),
+                                    width: 300,
+                                    height: 200,
+                                    decoration: new BoxDecoration(
+                                      borderRadius: BorderRadius.circular(108),
+                                    ),
+                                    child: ImageWidget(
+                                      imageUrl:
+                                          "${state[index].coverPhoto.urls.small}",
+                                      hashBlur:
+                                          "${state[index].coverPhoto.blurHash}",
+                                      colorBlendMode: BlendMode.dstATop,
+                                    ),
                                   ),
-                                ),
-                                child: Center(
-                                  child: TextComponent(
-                                      title:
-                                          "${controller.topicModel[index].title}",
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      letterSpacing: 10),
-                                ),
-                              )),
-                        ))),
+                                  Positioned.fill(
+                                    child: Align(
+                                      child: TextComponent(
+                                        title: "${state[index].title}",
+                                        fontSize: 20,
+                                        color: Colors.white.withOpacity(1),
+                                        letterSpacing: 15,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      onLoading: LoadingWidget()),
+                ),
                 SizedBox(height: 10),
                 TextComponent(
                   title: "Popular",
@@ -86,36 +92,33 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: double.infinity),
-                    child: GetX<HomeController>(
-                      initState: (state) {
-                        Get.find<HomeController>().getPhotos();
-                      },
-                      builder: (_) {
-                        return StaggeredGridView.countBuilder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          crossAxisCount: 4,
-                          itemCount: _.photoList.length,
-                          itemBuilder: (BuildContext context, int index) =>
-                              GestureDetector(
-                                  onTap: () {
-                                    _.details(id: _.photoList[index].id);
-                                  },
-                                  child: (_.photoList == null)
-                                      ? LoadingWidget()
-                                      : ImageWidget(
-                                          imageUrl:
-                                              "${_.photoList[index].urls.regular}",
-                                          hashBlur:
-                                              "${_.photoList[index].blurHash}")),
-                          staggeredTileBuilder: (int index) =>
-                              StaggeredTile.count(2, index.isEven ? 4 : 3),
-                          mainAxisSpacing: 7.0,
-                          crossAxisSpacing: 7.0,
-                        );
-                      },
-                    )),
+                  constraints: BoxConstraints(maxHeight: double.infinity),
+                  child: controller.obx(
+                      (state) => Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100)),
+                            child: StaggeredGridView.countBuilder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              crossAxisCount: 4,
+                              itemCount: state.length,
+                              itemBuilder: (BuildContext context, int index) =>
+                                  GestureDetector(
+                                onTap: () {
+                                  controller.details(id: state[index].id);
+                                },
+                                child: ImageWidget(
+                                    imageUrl: "${state[index].urls.regular}",
+                                    hashBlur: "${state[index].blurHash}"),
+                              ),
+                              staggeredTileBuilder: (int index) =>
+                                  StaggeredTile.count(2, index.isEven ? 4 : 3),
+                              mainAxisSpacing: 7.0,
+                              crossAxisSpacing: 7.0,
+                            ),
+                          ),
+                      onLoading: LoadingWidget()),
+                )
               ],
             ),
           ),

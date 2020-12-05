@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:unspalsh_app/app/data/models/topics_model.dart';
 import 'package:unspalsh_app/app/data/provider/api.dart';
 
 class TopicsRepository {
@@ -6,7 +7,7 @@ class TopicsRepository {
 
   TopicsRepository({@required this.apiClient}) : assert(apiClient != null);
 
-  getTopics() {
+  Future<List<TopicModel>> getTopics() {
     return apiClient.getTopics();
   }
 }

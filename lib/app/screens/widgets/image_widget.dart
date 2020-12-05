@@ -21,6 +21,7 @@ class ImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OctoImage(
+      
       image: CachedNetworkImageProvider(imageUrl),
       placeholderBuilder: OctoPlaceholder.blurHash(
         hashBlur,

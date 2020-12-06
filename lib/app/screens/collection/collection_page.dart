@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:unspalsh_app/app/controller/collections/collection_controller.dart';
 import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
 import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
+import 'package:unspalsh_app/app/screens/widgets/transparent_image.dart';
 import 'package:unspalsh_app/app/screens/widgets/reusable_text_bebas.dart';
 
 class CollectionWidet extends GetView<CollectionController> {
@@ -12,77 +13,89 @@ class CollectionWidet extends GetView<CollectionController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 50, left: 10, right: 10, bottom: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextComponent(
-            title: "Collections",
-            fontSize: 40,
-            letterSpacing: 4,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Explore the world through beautiful collections on Unsplash",
-            style: GoogleFonts.montserrat(
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
+    return LayoutBuilder(
+      builder: (ctx, constraints) => SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraints.maxHeight),
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 50, left: 10, right: 10, bottom: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextComponent(
+                  title: "Collections",
+                  fontSize: 40,
+                  letterSpacing: 4,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Explore the world through beautiful collections on Unsplash",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: double.infinity),
+                  child: controller.obx(
+                    (state) => ListView.builder(
+                      itemCount: state.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: TransparentImage(
+                                child: ImageWidget(
+                                    imageUrl:
+                                        "${state[index].coverPhoto.urls.regular}",
+                                    hashBlur:
+                                        "${state[index].coverPhoto.blurHash}",
+                                    height: 250,
+                                    width: double.infinity),
+                              ),
+                            ),
+                            Positioned.fill(
+                              child: Align(
+                                child: TextComponent(
+                                  title: "${state[index].title}",
+                                  fontSize: (state[index].title.length > 10)
+                                      ? 20
+                                      : 30,
+                                  color: Colors.white,
+                                  letterSpacing: 15,
+                                ),
+                              ),
+                            ),
+                            Positioned.fill(
+                              bottom: 20,
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: TextComponent(
+                                  title: "Curated By ${state[index].user.name}",
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: double.infinity),
-            child: controller.obx(
-              (state) => ListView.builder(
-                itemCount: state.length,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Stack(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: ImageWidget(
-                            imageUrl: "${state[index].coverPhoto.urls.regular}",
-                            hashBlur: "${state[index].coverPhoto.blurHash}",
-                            colorBlendMode: BlendMode.dstATop,
-                            height: 250,
-                            width: double.infinity),
-                      ),
-                      Positioned.fill(
-                        child: Align(
-                          child: TextComponent(
-                            title: "${state[index].title}",
-                            fontSize:
-                                (state[index].title.length > 10) ? 20 : 30,
-                            color: Colors.white,
-                            letterSpacing: 15,
-                          ),
-                        ),
-                      ),
-                      Positioned.fill(
-                        bottom: 20,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: TextComponent(
-                            title: "Curated By ${state[index].user.name}",
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    ],
-                  );
-                },
-              ),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

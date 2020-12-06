@@ -39,6 +39,7 @@
 //     }
 //   }
 // }
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:unspalsh_app/app/data/models/trending_photo_model.dart';
@@ -58,6 +59,7 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   final _selectedIndex = 0.obs;
   get selectedIndex => this._selectedIndex.value;
   set selectedIndex(value) => this._selectedIndex.value = value;
+
   // TopicID
   final _topicId = "".obs;
   get topicId => this._topicId.value;

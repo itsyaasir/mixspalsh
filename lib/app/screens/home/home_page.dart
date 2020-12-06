@@ -14,31 +14,24 @@ class HomePage extends GetView<HomeController> {
       CollectionWidet(),
     ];
     return Scaffold(
-      backgroundColor: Colors.white,
-      extendBody: true,
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.collections_outlined), label: "Collection"),
-            ],
-            selectedIconTheme: IconThemeData(color: Colors.black),
-            selectedItemColor: Colors.black,
-            backgroundColor: Color(0x00ffffff),
-            currentIndex: controller.selectedIndex,
-            onTap: (index) => controller.selectedIndex = index,
-          )),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: Obx(() => pages.elementAt(controller.selectedIndex)),
-            ),
-          ),
-        ),
-      ),
-    );
+        backgroundColor: Colors.white,
+        extendBody: true,
+        bottomNavigationBar: Obx(() => BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.collections_outlined),
+                    label: "Collection"),
+              ],
+              selectedIconTheme: IconThemeData(color: Colors.black),
+              selectedItemColor: Colors.black,
+              backgroundColor: Color(0x00ffffff),
+              currentIndex: controller.selectedIndex,
+              onTap: (index) => controller.selectedIndex = index,
+            )),
+        body: SafeArea(
+          child: Obx(() => pages.elementAt(controller.selectedIndex)),
+        ));
   }
 }
 

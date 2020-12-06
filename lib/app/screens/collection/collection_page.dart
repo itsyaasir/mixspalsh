@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:unspalsh_app/app/controller/collections/collection_controller.dart';
 import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
-import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
 import 'package:unspalsh_app/app/screens/widgets/transparent_image.dart';
 import 'package:unspalsh_app/app/screens/widgets/reusable_text_bebas.dart';
 
@@ -49,44 +48,50 @@ class CollectionWidet extends GetView<CollectionController> {
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return Stack(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: TransparentImage(
-                                child: ImageWidget(
-                                    imageUrl:
-                                        "${state[index].coverPhoto.urls.regular}",
-                                    hashBlur:
-                                        "${state[index].coverPhoto.blurHash}",
-                                    height: 250,
-                                    width: double.infinity),
-                              ),
-                            ),
-                            Positioned.fill(
-                              child: Align(
-                                child: TextComponent(
-                                  title: "${state[index].title}",
-                                  fontSize: (state[index].title.length > 10)
-                                      ? 20
-                                      : 30,
-                                  color: Colors.white,
-                                  letterSpacing: 15,
+                        return GestureDetector(
+                          onTap: () => controller.collectionDetails(
+                              collectionId: state[index].id, index: index),
+                          child: Stack(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: TransparentImage(
+                                  child: ImageWidget(
+                                      imageUrl:
+                                          "${state[index].coverPhoto.urls.regular}",
+                                      hashBlur:
+                                          "${state[index].coverPhoto.blurHash}",
+                                      height: 250,
+                                      width: double.infinity),
                                 ),
                               ),
-                            ),
-                            Positioned.fill(
-                              bottom: 20,
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: TextComponent(
-                                  title: "Curated By ${state[index].user.name}",
-                                  fontSize: 20,
-                                  color: Colors.white,
+                              Positioned.fill(
+                                child: Align(
+                                  child: TextComponent(
+                                    title: "${state[index].title}",
+                                    fontSize: (state[index].title.length > 10)
+                                        ? 20
+                                        : 30,
+                                    color: Colors.white,
+                                    letterSpacing: 10,
+                                  ),
                                 ),
                               ),
-                            )
-                          ],
+                              Positioned.fill(
+                                bottom: 20,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: TextComponent(
+                                    title:
+                                        "Curated By ${state[index].user.name}",
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    letterSpacing: 2,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         );
                       },
                     ),

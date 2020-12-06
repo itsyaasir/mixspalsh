@@ -15,6 +15,16 @@ class CollectionController extends GetxController
     super.onInit();
   }
 
+// index
+  final _index = 0.obs;
+  int get index => this._index.value;
+  set index(value) => this._index.value = value;
+// CollectionID
+  final _collectionId = "".obs;
+  get collectionId => this._collectionId.value;
+  set collectionId(value) => this._collectionId.value = value;
+
+// CollectionModel
   final _collectionModel = List<CollectionModel>().obs;
   List<CollectionModel> get collectionModel => this._collectionModel.toList();
   void set(collections) => this._collectionModel.assignAll(collections);
@@ -27,5 +37,11 @@ class CollectionController extends GetxController
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
     }
+  }
+
+  collectionDetails({String collectionId, int index}) {
+    this.collectionId = collectionId;
+    this.index = index;
+    Get.toNamed("/collectiondetail");
   }
 }

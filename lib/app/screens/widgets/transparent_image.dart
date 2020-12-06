@@ -10,8 +10,8 @@ class TransparentImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: ColorFiltered(
         colorFilter: ColorFilter.mode(
-          Colors.black.withOpacity(0.7),
-          BlendMode.dstATop,
+          Colors.black.withOpacity(0.5),
+          BlendMode.darken,
         ),
         child: child,
       ),

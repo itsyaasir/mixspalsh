@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:unspalsh_app/app/data/models/collection_details_model.dart';
 import 'package:unspalsh_app/app/data/models/collection_model.dart';
 import 'package:unspalsh_app/app/data/models/photo_details.dart';
 import 'package:unspalsh_app/app/data/models/topic_pics_model.dart';
@@ -100,6 +101,22 @@ class MyApiClient {
       } else {
         print(response.statusCode);
       }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+// ignore: missing_return
+  Future<List<CollectionDetailModel>> getCollectionDetail(collectionId) async {
+    String collectionDetailUrl =
+        "collections/$collectionId/photos/?client_id=$apiKey&per_page=50";
+    try {
+      var response = await httpClient.get(baseUrl + collectionDetailUrl,
+          options: Options(responseType: ResponseType.plain));
+      var jsonString = response.data.toString();
+      print(jsonString);
+      var collectionDetailModel = collectionDetailModelFromJson(jsonString);
+      return collectionDetailModel;
     } catch (e) {
       print(e.toString());
     }

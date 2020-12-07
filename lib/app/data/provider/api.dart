@@ -118,7 +118,7 @@ class MyApiClient {
       var collectionDetailModel = collectionDetailModelFromJson(jsonString);
       return collectionDetailModel;
     } catch (e) {
-      print(e.toString());
+      Future.error(e.toString());
     }
   }
 }

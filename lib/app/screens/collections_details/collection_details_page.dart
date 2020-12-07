@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:unspalsh_app/app/controller/collections/collection_controller.dart';
 import 'package:unspalsh_app/app/controller/collections_details/collection_details_controller.dart';
+import 'package:unspalsh_app/app/controller/home/home_controller.dart';
 import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
 import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
 import 'package:unspalsh_app/app/screens/widgets/reusable_text_bebas.dart';
@@ -15,6 +16,7 @@ class CollectionDetailPage extends GetView<CollectionDetailController> {
   Widget build(BuildContext context) {
     final collectionController = Get.find<CollectionController>();
     final index = Get.find<CollectionController>().index;
+    final homeController = Get.find<HomeController>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: LayoutBuilder(
@@ -63,7 +65,9 @@ class CollectionDetailPage extends GetView<CollectionDetailController> {
                               itemCount: state.length,
                               itemBuilder: (BuildContext context, int index) =>
                                   GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  homeController.details(id: state[index].id);
+                                },
                                 child: ImageWidget(
                                     imageUrl: "${state[index].urls.regular}",
                                     hashBlur: "${state[index].blurHash}"),

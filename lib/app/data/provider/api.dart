@@ -11,19 +11,20 @@ import 'package:unspalsh_app/app/env/env.dart';
 const apiKey = Env.apikey;
 const baseUrl = 'https://api.unsplash.com/';
 
-const PhotoUrl = 'photos/?client_id=$apiKey&per_page=1000';
-const topicURl = 'topics/?client_id=$apiKey&per_page=100';
-
 class MyApiClient {
   final Dio httpClient;
   MyApiClient({@required this.httpClient});
 
   // ignore: missing_return
   Future<List<PhotoModel>> getPhotos() async {
+    String PhotoUrl = 'photos/?client_id=$apiKey&per_page=30&page=1';
     try {
       var response = await httpClient.get(baseUrl + PhotoUrl,
           options: Options(responseType: ResponseType.plain));
       if (response.statusCode == 200) {
+        response.headers.forEach((name, values) {
+          print("$name : $values");
+        });
         var jsonString = response.data.toString();
         final photoModel = photoModelFromJson(jsonString);
         return photoModel;
@@ -31,7 +32,7 @@ class MyApiClient {
         print('erro -get');
       return null;
     } catch (error) {
-      print(error);
+      Future.error(error.toString());
     }
   }
 
@@ -55,6 +56,8 @@ class MyApiClient {
 
   // ignore: missing_return
   Future<List<TopicModel>> getTopics() async {
+    String topicURl = 'topics/?client_id=$apiKey&per_page=30&page=1';
+
     try {
       var response = await httpClient.get(baseUrl + topicURl,
           options: Options(responseType: ResponseType.plain));
@@ -90,7 +93,7 @@ class MyApiClient {
   }
 
   Future<List<CollectionModel>> getCollection() async {
-    String collectionUrl = "collections/?client_id=$apiKey&per_page=1000";
+    String collectionUrl = "collections/?client_id=$apiKey&per_page=30";
     try {
       var response = await httpClient.get(baseUrl + collectionUrl,
           options: Options(responseType: ResponseType.plain));

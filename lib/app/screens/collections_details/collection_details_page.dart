@@ -37,7 +37,7 @@ class CollectionDetailPage extends GetView<CollectionDetailController> {
                               title: "${state[index].title}",
                               fontSize: 30,
                               color: Colors.black,
-                              letterSpacing: 15,
+                              letterSpacing: 5,
                             ),
                             contentPadding: const EdgeInsets.all(20.0),
                             subtitle: Row(

@@ -1,3 +1,6 @@
+
+# Project Stopped Until I figure Pagination Out
+
 <p align="center">
   <a href="" rel="noopener">
  <img width=200px height=200px src="assets/icon.png" alt="Project logo"></a>
@@ -22,16 +25,17 @@
 
 ## 📝 Table of Contents
 
-- [📝 Table of Contents](#-table-of-contents)
-- [🖼️ Screenshots <a name = "screenshots"></a>](#️-screenshots-)
-- [🧐 About <a name = "about"></a>](#-about-)
-- [🏁 Getting Started <a name = "getting_started"></a>](#-getting-started-)
-  - [Prerequisites](#prerequisites)
-- [🎈 Usage <a name="usage"></a>](#-usage-)
-- [🚀 Deployment <a name = "deployment"></a>](#-deployment-)
-- [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
-- [✍️ Authors <a name = "authors"></a>](#️-authors-)
-- [🎉 Acknowledgements <a name = "acknowledgement"></a>](#-acknowledgements-)
+- [Project Stopped Until I figure Pagination Out](#project-stopped-until-i-figure-pagination-out)
+  - [📝 Table of Contents](#-table-of-contents)
+  - [🖼️ Screenshots <a name = "screenshots"></a>](#️-screenshots-)
+  - [🧐 About <a name = "about"></a>](#-about-)
+  - [🏁 Getting Started <a name = "getting_started"></a>](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+  - [🎈 Usage <a name="usage"></a>](#-usage-)
+  - [🚀 Deployment <a name = "deployment"></a>](#-deployment-)
+  - [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
+  - [✍️ Authors <a name = "authors"></a>](#️-authors-)
+  - [🎉 Acknowledgements <a name = "acknowledgement"></a>](#-acknowledgements-)
 
 ## 🖼️ Screenshots <a name = "screenshots"></a>
 These are some screenshots of the app.

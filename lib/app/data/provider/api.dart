@@ -16,8 +16,9 @@ class MyApiClient {
   MyApiClient({@required this.httpClient});
 
   // ignore: missing_return
-  Future<List<PhotoModel>> getPhotos() async {
-    String PhotoUrl = 'photos/?client_id=$apiKey&per_page=30&page=1';
+  Future<List<PhotoModel>> getPhotos(int pageNumber) async {
+    String PhotoUrl =
+        'photos/?client_id=$apiKey&per_page=30&page=${pageNumber}';
     try {
       var response = await httpClient.get(baseUrl + PhotoUrl,
           options: Options(responseType: ResponseType.plain));

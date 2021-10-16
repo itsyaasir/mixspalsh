@@ -44,7 +44,6 @@ class TopicsController extends GetxController
     with StateMixin<List<TopicModel>> {
   final TopicsRepository repository;
   TopicsController({@required this.repository}) : assert(repository != null);
-  int pageNumber;
   @override
   void onInit() {
     getTopics();
@@ -60,7 +59,6 @@ class TopicsController extends GetxController
   Future<List<TopicModel>> getTopics() async {
     var data;
     try {
-      pageNumber += 1;
       data = await repository.getTopics();
       change(data, status: RxStatus.success());
     } catch (e) {

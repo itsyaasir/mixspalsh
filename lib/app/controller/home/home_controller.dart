@@ -6,11 +6,14 @@ import 'package:unspalsh_app/app/data/repository/photo_repository.dart';
 import 'package:unspalsh_app/app/routes/app_pages.dart';
 
 class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
+  int pageNumber = 1;
+
   final PhotoRepository repository;
   HomeController({@required this.repository}) : assert(repository != null);
   @override
   void onInit() {
-    getPhotos();
+    getPhotos(pageNumber);
+
     super.onInit();
   }
 
@@ -40,10 +43,10 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   set photoList(photos) => this._photoModel.assignAll(photos);
 
   // ignore: missing_return
-  Future<List<PhotoModel>> getPhotos() async {
+  Future<List<PhotoModel>> getPhotos(int pageNumber) async {
     var data;
     try {
-      data = await repository.getPhotos();
+      data = await repository.getPhotos(pageNumber);
       change(data, status: RxStatus.success());
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));

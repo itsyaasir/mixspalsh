@@ -7,7 +7,8 @@ class PhotoRepository {
 
   PhotoRepository({@required this.apiClient}) : assert(apiClient != null);
 
-  Future<List<PhotoModel>> getPhotos() {
-    return apiClient.getPhotos();
+  Future<List<PhotoModel>> getPhotos(int pageNumber) {
+    print("Reached herrrrrrrre");
+    return apiClient.getPhotos(pageNumber);
   }
 }

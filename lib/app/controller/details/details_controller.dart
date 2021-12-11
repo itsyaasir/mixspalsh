@@ -79,7 +79,7 @@ class DetailsController extends GetxController
     Share.share(title, subject: subject);
   }
 
-  void snackbar({String title, String message, Color color}) {
+   snackbar({String title, String message, Color color}) {
     return Get.snackbar(
       title,
       message,

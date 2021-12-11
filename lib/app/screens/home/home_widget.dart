@@ -36,6 +36,7 @@ class HomeWidget extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     mainAxisAlignment: MainAxisAlignment.center,
+                    textBaseline: TextBaseline.alphabetic,
                     children: [
                       Image.asset(
                         "assets/icon.png",

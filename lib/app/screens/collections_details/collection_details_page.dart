@@ -31,6 +31,13 @@ class CollectionDetailPage extends GetView<CollectionDetailController> {
                   collectionController.obx(
                     (state) => Column(
                       children: [
+                        // back button to go back to collections
+                        IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
                         Center(
                           child: ListTile(
                             title: TextComponent(

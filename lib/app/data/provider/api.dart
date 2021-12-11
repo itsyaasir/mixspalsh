@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:unspalsh_app/app/data/models/collection_details_model.dart';
 import 'package:unspalsh_app/app/data/models/collection_model.dart';
 import 'package:unspalsh_app/app/data/models/photo_details.dart';
+import 'package:unspalsh_app/app/data/models/search_model.dart';
 import 'package:unspalsh_app/app/data/models/topic_pics_model.dart';
 import 'package:unspalsh_app/app/data/models/trending_photo_model.dart';
 import 'package:unspalsh_app/app/data/models/topics_model.dart';
@@ -118,11 +119,31 @@ class MyApiClient {
       var response = await httpClient.get(baseUrl + collectionDetailUrl,
           options: Options(responseType: ResponseType.plain));
       var jsonString = response.data.toString();
-      print(jsonString);
+      
       var collectionDetailModel = collectionDetailModelFromJson(jsonString);
       return collectionDetailModel;
     } catch (e) {
       Future.error(e.toString());
+    }
+  }
+
+  // Implement search query for photos unsplash
+  // ignore: missing_return
+  Future<SearchModel> searchPhotos(String query) async {
+    String searchUrl = 'search/photos/?client_id=$apiKey&query=$query';
+    try {
+      var response = await httpClient.get(baseUrl + searchUrl,
+          options: Options(responseType: ResponseType.plain));
+      if (response.statusCode == 200) {
+        var jsonString = response.data.toString();
+        final searchModel = searchModelFromJson(jsonString);
+        
+        return searchModel;
+      } else
+        print('erro -get');
+      return null;
+    } catch (error) {
+      Future.error(error.toString());
     }
   }
 }

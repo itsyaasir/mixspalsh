@@ -13,7 +13,6 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   @override
   void onInit() {
     getPhotos(pageNumber);
-
     super.onInit();
   }
 
@@ -41,6 +40,9 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   final _photoModel = List<PhotoModel>().obs;
   List<PhotoModel> get photoList => this._photoModel.toList();
   set photoList(photos) => this._photoModel.assignAll(photos);
+
+
+
 
   // ignore: missing_return
   Future<List<PhotoModel>> getPhotos(int pageNumber) async {

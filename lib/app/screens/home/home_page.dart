@@ -4,6 +4,7 @@ import 'package:unspalsh_app/app/controller/home/home_controller.dart';
 import 'package:unspalsh_app/app/controller/topics/topics_controller.dart';
 import 'package:unspalsh_app/app/screens/collection/collection_page.dart';
 import 'package:unspalsh_app/app/screens/home/home_widget.dart';
+import 'package:unspalsh_app/app/screens/search/search_page.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
@@ -12,6 +13,7 @@ class HomePage extends GetView<HomeController> {
     List<Widget> pages = [
       HomeWidget(topicController: topicController, controller: controller),
       CollectionWidet(),
+      SearchPage(),
     ];
     return Scaffold(
         backgroundColor: Colors.white,
@@ -22,6 +24,8 @@ class HomePage extends GetView<HomeController> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.collections_outlined),
                     label: "Collection"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.search), label: "Search"),
               ],
               selectedIconTheme: IconThemeData(color: Colors.black),
               elevation: 8,

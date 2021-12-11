@@ -6,4 +6,5 @@ abstract class Routes {
   static const DETAILS = "/details";
   static const SPLASH = "/splash";
   static const COLLECTIONDETAIL = "/collectiondetail";
+  static const SEARCHPAGE = "/search";
 }

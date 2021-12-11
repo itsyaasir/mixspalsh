@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:unspalsh_app/app/data/models/photo_details.dart';
 import 'package:unspalsh_app/app/data/models/search_model.dart';
 import 'package:unspalsh_app/app/data/repository/search_repository.dart';
+import 'package:unspalsh_app/app/routes/app_pages.dart';
 
 class SearchPageController extends GetxController with StateMixin<SearchModel> {
   final SearchRepository repository;
@@ -23,5 +24,11 @@ class SearchPageController extends GetxController with StateMixin<SearchModel> {
           status:
               RxStatus.error(e.toString())); // For the StateMixin to show error
     }
+  }
+
+  var id = "";
+  details({String id}) {
+    this.id = id;
+    Get.toNamed(Routes.DETAILS);
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:unspalsh_app/app/controller/details/details_controller.dart';
+import 'package:unspalsh_app/app/controller/home/home_controller.dart';
 import 'package:unspalsh_app/app/controller/search/search_controller.dart';
 import 'package:unspalsh_app/app/screens/widgets/image_widget.dart';
 import 'package:unspalsh_app/app/screens/widgets/loading_widget.dart';
@@ -11,6 +13,7 @@ class SearchPage extends GetView<SearchPageController> {
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Get.find<HomeController>();
     // Return search page
     return Scaffold(
       // Retrun rounded container with search bar and search button
@@ -75,17 +78,31 @@ class SearchPage extends GetView<SearchPageController> {
                           crossAxisCount: 4,
                           itemCount: state.results.length,
                           itemBuilder: (BuildContext context, int index) =>
-                              ImageWidget(
-                                  imageUrl:
-                                      "${state.results[index].urls.regular}",
-                                  hashBlur: "${state.results[index].blurHash}"),
+                              GestureDetector(
+                            onTap: () {
+                              homeController.details(
+                                  id: state.results[index].id);
+                            },
+                            child: ImageWidget(
+                                imageUrl:
+                                    "${state.results[index].urls.regular}",
+                                hashBlur: "${state.results[index].blurHash}"),
+                          ),
                           staggeredTileBuilder: (int index) =>
                               StaggeredTile.count(2, index.isEven ? 4 : 3),
                           mainAxisSpacing: 7.0,
                           crossAxisSpacing: 7.0,
                         ),
                       ),
-                onLoading: LoadingWidget(),
+                onLoading: Center(
+                  child: Text(
+                    "Input your search",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
                 onEmpty: Center(
                   child: Text('No result found'),
                 ),

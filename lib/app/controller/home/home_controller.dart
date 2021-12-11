@@ -17,6 +17,12 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   }
 
   // Scroll Counter
+  int get scrollCounter => pageNumber;
+  void incrementScrollCounter() {
+    pageNumber++;
+    getPhotos(pageNumber);
+  }
+
 
   // SelectedIndex for bottomNavigationBar
   final _selectedIndex = 0.obs;
@@ -41,15 +47,13 @@ class HomeController extends GetxController with StateMixin<List<PhotoModel>> {
   List<PhotoModel> get photoList => this._photoModel.toList();
   set photoList(photos) => this._photoModel.assignAll(photos);
 
-
-
-
   // ignore: missing_return
   Future<List<PhotoModel>> getPhotos(int pageNumber) async {
     var data;
     try {
       data = await repository.getPhotos(pageNumber);
       change(data, status: RxStatus.success());
+      update(data);
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
     }

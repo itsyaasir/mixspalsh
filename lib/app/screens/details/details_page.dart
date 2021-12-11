@@ -105,44 +105,89 @@ class DetailsPage extends GetView<DetailsController> {
                               iconSize: 30,
                               color: Colors.white70,
                               onPressed: () {
-                                // Open top rounded ios bottomsheet with info.
-
-                                // Get.to(
-                                //     Scaffold(
-                                //       appBar: AppBar(
-                                //         title: Text("Info"),
-                                //       ),
-                                //       body: Container(
-                                //         child: ListView(
-                                //           children: [
-                                //             ListTile(
-                                //               title: Text("Author"),
-                                //               subtitle:
-                                //                   Text("${state.user.name}"),
-                                //             ),
-                                //             ListTile(
-                                //               title: Text("Downloads"),
-                                //               subtitle:
-                                //                   Text("${state.downloads}"),
-                                //             ),
-                                //             ListTile(
-                                //               title: Text("Likes"),
-                                //               subtitle: Text("${state.likes}"),
-                                //             ),
-                                //             ListTile(
-                                //               title: Text("Views"),
-                                //               subtitle: Text("${state.views}"),
-                                //             ),
-                                //             ListTile(
-                                //               title: Text("Created At"),
-                                //               // subtitle: Text(
-                                //               //     "${DateTime.fromMillisecondsSinceEpoch(state.createdAt * 1000).toString()}"),
-                                //             ),
-                                //           ],
-                                //         ),
-                                //       ),
-                                //     ),
-                                //     transition: Transition.downToUp);
+                                // Open a bottom sheet to show the all the info of the photo
+                                Get.bottomSheet(
+                                  Container(
+                                    height: Get.height * 0.5,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                      ),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Column(
+                                        children: [
+                                          // Avatar
+                                          Container(
+                                            height: 100,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                image: NetworkImage(
+                                                    "${state.user.profileImage.large}"),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20),
+                                          Text(
+                                            "Photo by ${state.user.name}",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            "${state.description ?? "N/A"}",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            "Downloads : ${state.downloads}",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            "Likes : ${state.likes}",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            "Views : ${state.views}",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            "${state.location.title.toString().split(",")[0] ?? "N/A"}",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            "Updated at : ${state.updatedAt}",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
                               },
                             ),
                           ],

@@ -106,6 +106,7 @@ class HomeWidget extends StatelessWidget {
                 ConstrainedBox(
                   constraints: BoxConstraints(maxHeight: double.infinity),
                   child: controller.obx(
+                      // fetch more images when scroll to bottom of the screen
                       (state) => StaggeredGridView.countBuilder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,

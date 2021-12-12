@@ -13,6 +13,5 @@ void main() {
     theme: appThemeData,
     getPages: AppPages.pages,
     initialBinding: InitialBinding(),
-    
   ));
 }

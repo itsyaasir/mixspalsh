@@ -48,6 +48,7 @@ class SearchPage extends GetView<SearchPageController> {
                 ),
 
                 onFieldSubmitted: (value) {
+                  print(value);
                   controller.search(value);
                 },
               ),

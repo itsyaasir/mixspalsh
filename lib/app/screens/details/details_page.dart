@@ -44,7 +44,7 @@ class DetailsPage extends GetView<DetailsController> {
                         child: IconButton(
                           icon: Icon(
                             Icons.close,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                           onPressed: () {
                             Get.back();
@@ -81,7 +81,7 @@ class DetailsPage extends GetView<DetailsController> {
                               icon: Icon(Icons.download_outlined),
                               iconSize: 30,
                               color: (!controller.isDownloaded.value)
-                                  ? Colors.white70
+                                  ? Colors.white
                                   : Colors.blue,
                               onPressed: () {
                                 controller.savePhoto(
@@ -92,7 +92,7 @@ class DetailsPage extends GetView<DetailsController> {
                             IconButton(
                               icon: Icon(Icons.share_outlined),
                               iconSize: 30,
-                              color: Colors.white70,
+                              color: Colors.white,
                               onPressed: () {
                                 controller.sharePhoto(
                                     title: "${state.urls.full}",
@@ -103,7 +103,7 @@ class DetailsPage extends GetView<DetailsController> {
                             IconButton(
                               icon: Icon(Icons.info_outline_rounded),
                               iconSize: 30,
-                              color: Colors.white70,
+                              color: Colors.white,
                               onPressed: () {
                                 // Open a bottom sheet to show the all the info of the photo
                                 Get.bottomSheet(
@@ -115,6 +115,14 @@ class DetailsPage extends GetView<DetailsController> {
                                         topRight: Radius.circular(20),
                                       ),
                                       color: Colors.white,
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.black.withOpacity(0.2),
+                                          Colors.black.withOpacity(0.8),
+                                        ],
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(20.0),
@@ -137,37 +145,37 @@ class DetailsPage extends GetView<DetailsController> {
                                           Text(
                                             "Photo by ${state.user.name}",
                                             style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
                                           ),
                                           SizedBox(height: 10),
                                           Text(
                                             "${state.description ?? "N/A"}",
                                             style: TextStyle(
-                                              fontSize: 15,
-                                            ),
+                                                fontSize: 15,
+                                                color: Colors.white),
                                           ),
                                           SizedBox(height: 10),
                                           Text(
                                             "Downloads : ${state.downloads}",
                                             style: TextStyle(
-                                              fontSize: 15,
-                                            ),
+                                                fontSize: 15,
+                                                color: Colors.white),
                                           ),
                                           SizedBox(height: 10),
                                           Text(
                                             "Likes : ${state.likes}",
                                             style: TextStyle(
-                                              fontSize: 15,
-                                            ),
+                                                fontSize: 15,
+                                                color: Colors.white),
                                           ),
                                           SizedBox(height: 10),
                                           Text(
                                             "Views : ${state.views}",
                                             style: TextStyle(
-                                              fontSize: 15,
-                                            ),
+                                                fontSize: 15,
+                                                color: Colors.white),
                                           ),
                                           SizedBox(height: 10),
                                           Text(
@@ -177,12 +185,6 @@ class DetailsPage extends GetView<DetailsController> {
                                             ),
                                           ),
                                           SizedBox(height: 10),
-                                          Text(
-                                            "Updated at : ${state.updatedAt}",
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),

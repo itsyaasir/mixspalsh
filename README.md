@@ -1,6 +1,4 @@
 
-# Project Stopped Until I figure Pagination Out
-
 <p align="center">
   <a href="" rel="noopener">
  <img width=200px height=200px src="assets/icon.png" alt="Project logo"></a>
@@ -20,27 +18,31 @@
 ---
 
 <p align="center"> MiXplash : Beautiful Images and Wallpapers
-    <br> 
+    <br>
 </p>
 
 ## 📝 Table of Contents
 
-- [Project Stopped Until I figure Pagination Out](#project-stopped-until-i-figure-pagination-out)
-  - [📝 Table of Contents](#-table-of-contents)
-  - [🖼️ Screenshots <a name = "screenshots"></a>](#️-screenshots-)
-  - [🧐 About <a name = "about"></a>](#-about-)
-  - [🏁 Getting Started <a name = "getting_started"></a>](#-getting-started-)
-    - [Prerequisites](#prerequisites)
-  - [🎈 Usage <a name="usage"></a>](#-usage-)
-  - [🚀 Deployment <a name = "deployment"></a>](#-deployment-)
-  - [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
-  - [✍️ Authors <a name = "authors"></a>](#️-authors-)
-  - [🎉 Acknowledgements <a name = "acknowledgement"></a>](#-acknowledgements-)
+- [📝 Table of Contents](#-table-of-contents)
+- [🖼️ Screenshots <a name = "screenshots"></a>](#️-screenshots-)
+- [🧐 About <a name = "about"></a>](#-about-)
+- [🏁 Getting Started <a name = "getting_started"></a>](#-getting-started-)
+  - [Prerequisites](#prerequisites)
+- [🎈 Usage <a name="usage"></a>](#-usage-)
+- [🚀 Deployment <a name = "deployment"></a>](#-deployment-)
+- [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
+- [✍️ Authors <a name = "authors"></a>](#️-authors-)
+- [🎉 Acknowledgements <a name = "acknowledgement"></a>](#-acknowledgements-)
 
 ## 🖼️ Screenshots <a name = "screenshots"></a>
-These are some screenshots of the app.
-<img src="./Screenshot_20201201-072403.jpg" width="400" height="700">
-<img src="./Screenshot_20201201-072422.jpg" width="400" height="700">
+
+<img src="./home.png" width="" height="500">
+<img src="./collections.png" width="" height="500">
+<img src="./collection_details.png" width="" height="500">
+<img src="./photo_details.png" width="" height="500">
+<img src="./credits.png" width="" height="500">
+<img src="./search.png" width="" height="500">
+
 ## 🧐 About <a name = "about"></a>
 
 This is personal project for downloading and sharing of photos. Thank to Unsplash for allowing the use of their API .
@@ -59,7 +61,6 @@ Android Studio Code/VSCode installed
 
 ```
 
-
 ## 🎈 Usage <a name="usage"></a>
 
 The app is pretty self-explanatory
@@ -72,7 +73,6 @@ You can deploy on the phone either Android/iOS .
 
 - [Dart](https://dart.dev/) - Backend Server
 - [Flutter](https://flutter.dev/) - Front-End Framework
-
 
 ## ✍️ Authors <a name = "authors"></a>
 
